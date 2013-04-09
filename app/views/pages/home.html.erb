@@ -1,0 +1,46 @@
+<head>
+  <title><%= @title %></title>
+</head>
+<body>
+<!--<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>-->
+
+<script>
+$(function() {
+  $("#user_code").linedtextarea();
+
+  $(".stripeMe tr:even").addClass("alt");
+
+  $(".stripeMe tr").mouseover(function() {
+    $(this).addClass("over");
+  });
+
+  $(".stripeMe tr").mouseout(function() {
+    $(this).removeClass("over");
+  });
+
+});
+</script>
+
+<h1><%= @title %></h1>
+<h2><%= @message %></h2>
+<p>Your scenario/feature: </p>
+
+<%= form_tag :action => 'home' do %>
+   <%= text_area_tag 'user_code',  @val_code %>
+   <%= submit_tag 'Validate' %>
+<% end %>
+
+<div id="zebra_table">
+	<table class="stripeMe">
+	<% @result.each_pair do |key, value| %>
+	<!--If the variable contains 'true,' text color -> green. else, red. -->
+		<%if value %>
+			<tr><td style="color: green"> <%= @result2[key] %> </td></tr>
+		<% else %>
+			<tr><td style="color: red"> <%= @result2[key] %> </td></tr>
+		<% end %>
+	<% end %>
+	</table>
+</div><!-- end zebra_table -->
+</body>
